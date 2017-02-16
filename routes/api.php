@@ -31,6 +31,58 @@ $api->version('v1', function (Router $api) {
             ]);
         });
 
+        // ----------
+
+        $api->get('duration/{start}', 'App\Api\V1\Controllers\LegacyController@getDuration');
+
+        $api->get('recipes/{query}', function($query) {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('getCkRecipes', array($query));
+        });
+
+        $api->get('recipesDetails/{rezShowId}', function($rezShowId) {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('getCkRecipeDetails', array($rezShowId));
+        });
+
+        $api->get('sunrise', function() {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('getSunrise', array());
+        });
+
+        $api->get('sunset', function() {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('getSunset', array());
+        });
+
+        $api->get('umsaetze', function() {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('getUmsaetze', array());
+        });
+
+        /**
+         * homeCM
+         */
+
+        $api->get('storage', function(Request $request) {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('anyStorage', array($request));
+        });
+
+        $api->get('filetype', function(Request $request) {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('anyFiletype', array($request));
+        });
+
+        $api->get('software', function(Request $request) {
+            $apiCtrl = \App()->make('ApiCtrl');
+            return $apiCtrl->callAction('anySoftware', array($request));
+        });
+
+        // possible additions: uptime robot, google analytics, wordpress stats, icinga
+
+        // ----------
+
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',
             function() {
