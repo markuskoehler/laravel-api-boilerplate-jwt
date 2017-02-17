@@ -34,14 +34,14 @@ class LegacyController {
         );
     }
 
-    function getCkRecipes($suchbegriff) {
+    function getCkRecipes($query) {
         $recipes = file_get_contents('http://api.chefkoch.de/api/1.2/api-recipe-search.php?Suchbegriff=' .
-            urlencode($suchbegriff) . '&i=0&z=1&m=0&o=0&t=&limit=20');
+            urlencode($query) . '&i=0&z=1&m=0&o=0&t=&limit=20');
         return Response($recipes);
     }
 
-    function getCkRecipeDetails($showId) {
-        $recipeDetails = file_get_contents('http://api.chefkoch.de/api/1.2/api-recipe.php?ID=' . $showId . '&divisor=0&limit=1');
+    function getCkRecipeDetails($rezShowId) {
+        $recipeDetails = file_get_contents('http://api.chefkoch.de/api/1.2/api-recipe.php?ID=' . $rezShowId . '&divisor=0&limit=1');
         return Response($recipeDetails);
     }
 

@@ -35,36 +35,21 @@ $api->version('v1', function (Router $api) {
 
         $api->get('duration/{start}', 'App\Api\V1\Controllers\LegacyController@getDuration');
 
-        $api->get('recipes/{query}', function($query) {
-            $apiCtrl = \App()->make('ApiCtrl');
-            return $apiCtrl->callAction('getCkRecipes', array($query));
-        });
+        $api->get('recipes/{query}', 'App\Api\V1\Controllers\LegacyController@getCkRecipes');
 
-        $api->get('recipesDetails/{rezShowId}', function($rezShowId) {
-            $apiCtrl = \App()->make('ApiCtrl');
-            return $apiCtrl->callAction('getCkRecipeDetails', array($rezShowId));
-        });
+        $api->get('recipesDetails/{rezShowId}', 'App\Api\V1\Controllers\LegacyController@getCkRecipeDetails');
 
-        $api->get('sunrise', function() {
-            $apiCtrl = \App()->make('ApiCtrl');
-            return $apiCtrl->callAction('getSunrise', array());
-        });
+        $api->get('sunrise', 'App\Api\V1\Controllers\LegacyController@getSunrise');
 
-        $api->get('sunset', function() {
-            $apiCtrl = \App()->make('ApiCtrl');
-            return $apiCtrl->callAction('getSunset', array());
-        });
+        $api->get('sunset', 'App\Api\V1\Controllers\LegacyController@getSunset');
 
-        $api->get('umsaetze', function() {
-            $apiCtrl = \App()->make('ApiCtrl');
-            return $apiCtrl->callAction('getUmsaetze', array());
-        });
+        $api->get('umsaetze', 'App\Api\V1\Controllers\LegacyController@getUmsaetze');
 
         /**
          * homeCM
          */
 
-        $api->get('storage', function(Request $request) {
+        /*$api->get('storage', function(Request $request) {
             $apiCtrl = \App()->make('ApiCtrl');
             return $apiCtrl->callAction('anyStorage', array($request));
         });
@@ -77,7 +62,7 @@ $api->version('v1', function (Router $api) {
         $api->get('software', function(Request $request) {
             $apiCtrl = \App()->make('ApiCtrl');
             return $apiCtrl->callAction('anySoftware', array($request));
-        });
+        });*/
 
         // possible additions: uptime robot, google analytics, wordpress stats, icinga
 
